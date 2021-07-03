@@ -121,9 +121,7 @@ class GlobalRatesCurve:
         dfs = pd.read_html("https://www.lch.com/services/swapclear/essentials/settlement-prices")
         for i in range(0,5):
             self.swap_quotes[dfs[DF_INDEX].iloc[i,0] + ' ' + self.tenor + ' Libor'] = dfs[DF_INDEX].iloc[i,COL_INDEX]
-            print(dfs[DF_INDEX].iloc[i,0] + ' ' + self.tenor + ' Libor', " ", dfs[DF_INDEX].iloc[i,COL_INDEX])
 
-        print(self.swap_quotes)
 
     def build_LIBOR_curve(self, ois_curve):
         today = date.today()
@@ -140,7 +138,7 @@ class GlobalRatesCurve:
                                      (self.depo_quotes['S/N depo'], 2),
                                      (self.depo_quotes['1 wk depo'], 7),
                                      (self.depo_quotes['1 Mth depo'], 30),
-                                     (self.depo_quotes['2 Mth depo'], 60),
+                                     # (self.depo_quotes['2 Mth depo'], 60),
                                      # (self.depo_quotes['3 Mth depo'], 90),
                                      # (self.depo_quotes['6 Mth depo'], 180),
                                      # (self.depo_quotes['12 Mth depo'], 365)
@@ -166,7 +164,6 @@ class GlobalRatesCurve:
                                 ]
         ]
 
-        print('2 year ' + self.tenor + ' Libor')
 
         libor_curve = ql.PiecewiseLogCubicDiscount(2, ql.TARGET(), helpers,
                                                        ql.Actual365Fixed())

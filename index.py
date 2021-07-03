@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from modules.GlobalRatesCurve import GlobalRatesCurve
 from PIL import Image
+from apps import usd
 
 cwd = Path.cwd()
 
@@ -35,7 +36,7 @@ navbar = dbc.NavbarSimple(
             ],
             nav=True,
             in_navbar=True,
-            label="More",
+            label="Curves",
         ),
     ],
     brand="Lucidate",
@@ -57,7 +58,6 @@ def serve_layout():
         navbar,
     ]),
     html.Div(id='page-content', children=[]),
-    html.H1("Hello World!"),
 ],
 style=CONTENT_STYLE)
 
