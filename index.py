@@ -57,6 +57,7 @@ def serve_layout():
         navbar,
     ]),
     html.Div(id='page-content', children=[]),
+    html.H1("Hello World!"),
 ],
 style=CONTENT_STYLE)
 
