@@ -1,6 +1,7 @@
 import pandas as pd
 import QuantLib as ql
 from datetime import date
+from . import WebRatesScraper
 
 
 class GlobalRatesCurve:
@@ -9,6 +10,7 @@ class GlobalRatesCurve:
         self.tenor = tenor #Term of rate; E.g. O/N, 3M, 6M
         self.type = type #Type of curve: E.g. OIS (Discount) or LIBOR (Forecast)
         self.depo_quotes = {}
+        self.futures_quotes = {}
         self.ois_quotes = {}
         self.swap_quotes = {}
 
@@ -122,6 +124,9 @@ class GlobalRatesCurve:
         for i in range(0,5):
             self.swap_quotes[dfs[DF_INDEX].iloc[i,0] + ' ' + self.tenor + ' Libor'] = dfs[DF_INDEX].iloc[i,COL_INDEX]
 
+    def get_futures(self):
+
+        return
 
     def build_LIBOR_curve(self, ois_curve):
         today = date.today()
